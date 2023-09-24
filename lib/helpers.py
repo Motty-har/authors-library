@@ -1,6 +1,6 @@
 # lib/helpers.py
 
-def helper_1():
+def list_authors():
     print("Performing useful function#1.")
 
 
