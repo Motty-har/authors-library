@@ -18,6 +18,9 @@ def delete_player():
 def update_player():
     pass
 
+def update_stats():
+    pass
+
 def view_goals():
     pass
 
