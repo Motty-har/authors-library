@@ -1,7 +1,8 @@
 # lib/helpers.py
+from models.players import Player
 
-def list_authors():
-    print("Performing useful function#1.")
+def add_player():
+    print("Hello")
 
 
 def exit_program():

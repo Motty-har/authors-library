@@ -2,7 +2,7 @@
 
 from helpers import (
     exit_program,
-    list_authors
+    add_player
 )
 
 
@@ -13,15 +13,15 @@ def main():
         if choice == "E" or "e":
             exit_program()
         elif choice == "A" or "a":
-            list_authors()
+            add_player()
         else:
             print("Invalid choice")
 
 
 def menu():
     print("Please select an option:")
-    print("E or e. Exit the program")
-    print("A or a. View list of authors")
+    print("Type E or e to exit the program")
+    print("Type A or a to add a player")
 
 
 if __name__ == "__main__":
