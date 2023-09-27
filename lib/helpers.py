@@ -8,9 +8,7 @@ def add_player():
     print(f'Success: {player}')
 
 def list_players():
-    players = Player.get_all()
-    for player in players:
-        print(player)
+    pass
 
 def delete_player():
     pass 

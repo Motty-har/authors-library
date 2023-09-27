@@ -20,7 +20,7 @@ def main():
         if choice == "E":
             exit_program()
         elif choice == "L":
-            #list_players()
+            list_players()
             player_submenu()
             choice = input("> ")
             if choice == "B":
