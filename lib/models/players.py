@@ -7,7 +7,7 @@ class Player():
         self.number = number
 
     def __repr__(self):
-        return f"<Department {self.id}: {self.name}>"
+        return f"<Player {self.id}: {self.name}, {self.number}>"
 
     
     @classmethod
@@ -25,7 +25,7 @@ class Player():
     @classmethod
     def drop_table(cls):
         """ Drop the table that persists Player instances """
-        sql = """\
+        sql = """
             DROP TABLE IF EXISTS players;
         """
         CURSOR.execute(sql)
