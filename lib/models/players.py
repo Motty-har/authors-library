@@ -51,3 +51,13 @@ class Player():
         player = cls(name, number)
         player.save()
         return player
+    
+    @classmethod
+    def get_all(cls):
+        """Return a list containing a Player object per row in the table"""
+        sql = """
+            SELECT *
+            FROM players
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
