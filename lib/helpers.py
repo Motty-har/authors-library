@@ -18,6 +18,15 @@ def delete_player():
 def update_player():
     pass
 
+def view_goals():
+    pass
+
+def view_assists():
+    pass
+
+def view_points():
+    pass
+
 def exit_program():
     print("Goodbye!")
     exit()
