@@ -111,6 +111,18 @@ class Player():
         del type(self).all[self.id]
 
         self.id = None
+
+    def update(self):
+        """Update the table row corresponding to the current Player instance."""
+        sql = """
+            UPDATE players
+            SET name = ?, number = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.number, self.id))
+        CONN.commit()
+
+
     
 
 

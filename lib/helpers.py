@@ -21,7 +21,20 @@ def delete_player():
         print(f'Player {id_} not found')
 
 def update_player():
-    pass
+    id_ = input("Enter the players id: ")
+    if player := Player.find_by_id(id_):
+        try:
+            name = input("Enter the players updated name: ")
+            player.name = name
+            number = input("Enter the players updated number: ")
+            player.number = number
+
+            player.update()
+            print(f'Success: {player}')
+        except Exception as exc:#what is the functinality of this
+            print("Error updating player: ", exc)
+    else:
+        print(f'Player ({id_} not found)')
 
 def player_stats():
     pass
