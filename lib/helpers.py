@@ -13,7 +13,12 @@ def list_players():
         print(player)
 
 def delete_player():
-    pass 
+    id_ = input("Enter the players id: ")
+    if player := Player.find_by_id(id_):
+        player.delete()
+        print(f'Player {id_} succesfully deleted')
+    else:
+        print(f'Player {id_} not found')
 
 def update_player():
     pass

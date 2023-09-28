@@ -84,6 +84,35 @@ class Player():
         all_rows = [cls.instance_from_db(row) for row in rows] 
         return all_rows
 
+    @classmethod
+    def find_by_id(cls, id):
+        """Return a Player object corresponding to the table row matching the specified primary key"""
+        sql = """
+            SELECT *
+            FROM players
+            WHERE id = ?
+        """
+
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
+    def delete(self):
+        """Delete the table row corresponding to the current Player instance,
+        delete the dictionary entry, and reassign id attribute"""
+
+        sql = """
+            DELETE FROM players
+            WHERE id = ?
+        """
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+
+        self.id = None
+    
+
 
 
     
