@@ -1,6 +1,9 @@
 from models.__init__ import CURSOR, CONN
 
 class Player():
+
+    all = {}
+
     def __init__(self, name, number, id=None):
         self.id = id
         self.name = name
@@ -53,6 +56,23 @@ class Player():
         return player
     
     @classmethod
+    def instance_from_db(cls, row):
+        """Return a Player object having the attribute values from the table row."""
+
+        # Check the dictionary for an existing instance using the row's primary key
+        player = cls.all.get(row[0])
+        if player:
+            # ensure attributes match row values in case local instance was modified
+            player.name = row[1]
+            player.number = row[2]
+        else:
+            # not in dictionary, create new instance and add to dictionary
+            player = cls(row[1], row[2])
+            player.id = row[0]
+            cls.all[player.id] = player
+        return player
+
+    @classmethod
     def get_all(cls):
         """Return a list containing a Player object per row in the table"""
         sql = """
@@ -61,3 +81,10 @@ class Player():
         """
 
         rows = CURSOR.execute(sql).fetchall()
+        all_rows = [cls.instance_from_db(row) for row in rows] 
+        return all_rows
+
+
+
+    
+    

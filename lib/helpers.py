@@ -8,12 +8,17 @@ def add_player():
     print(f'Success: {player}')
 
 def list_players():
-    pass
+    players = Player.get_all()
+    for player in players:
+        print(player)
 
 def delete_player():
     pass 
 
 def update_player():
+    pass
+
+def player_stats():
     pass
 
 def update_stats():

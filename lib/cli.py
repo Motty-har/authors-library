@@ -6,6 +6,7 @@ from helpers import (
     list_players,
     delete_player,
     update_player,
+    player_stats,
     update_stats,
     view_goals,
     view_assists,
@@ -17,20 +18,22 @@ def main():
     while True:
         menu()
         choice = input("> ")
-        if choice == "E":
+        if choice is "E":#how to do upercase and lowercase
             exit_program()
         elif choice == "L":
             list_players()
             player_submenu()
             choice = input("> ")
-            if choice == "B":
+            if choice == "B":##need help with this
                 exit()
             elif choice == "A":
                 add_player()
             elif choice == "D":
-                delete_player()
+                delete_player() 
             elif choice == "U":
                 update_player()
+            elif choice == "S":
+                player_stats()
             else:
                 print("Invalid choice")
         elif choice == "S":
@@ -68,6 +71,7 @@ def player_submenu():
     print("Type A to add a player")
     print("Type D to delete a player")
     print("Type U to update a player")
+    print("Type S to view a specific players stats")
 
 def stats_submenu():
     print("Type B to go back")
