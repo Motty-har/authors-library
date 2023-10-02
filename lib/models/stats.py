@@ -54,3 +54,18 @@ class Stats:
         else:
             raise ValueError(
                 "Player id must reference a player in the database")
+        
+    @classmethod
+    def create_table(cls):
+        """ Create a new table to persist the attributes of Stats instances """
+        sql = """
+            CREATE TABLE IF NOT EXISTS stats (
+            id INTEGER PRIMARY KEY,
+            goals INTEGER,
+            stats INTEGER,
+            points INTEGER,
+            player_id INTEGER,
+            FOREIGN KEY (player_id) REFERENCES players(id))
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
