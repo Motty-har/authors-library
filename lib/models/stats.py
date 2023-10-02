@@ -69,3 +69,26 @@ class Stats:
         """
         CURSOR.execute(sql)
         CONN.commit()
+
+    def save(self):
+        """ Insert a new row with the goals, assists, points, and players id values of the current Stats object.
+        Update object id attribute using the primary key value of new row.
+        Save the object in local dictionary using table row's PK as dictionary key"""
+        sql = """
+                INSERT INTO stats (goals, assists, points, player_id)
+                VALUES (?, ?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.goals, self.assists, self.points, self.player_id))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, goals, assists, player_id):
+        points = goals + assists
+        """ Initialize a new Stats instance and save the object to the database """
+        stats = cls(goals, assists, points, player_id)
+        stats.save()
+        return stats  
