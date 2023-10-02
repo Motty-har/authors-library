@@ -42,3 +42,15 @@ class Stats:
             raise ValueError(
                 "Assist must be a number"
             )
+    
+    @property
+    def player_id(self):
+        return self._player_id
+
+    @player_id.setter
+    def player_id(self, player_id):
+        if type(player_id) is int and Player.find_by_id(player_id):
+            self._player_id = player_id
+        else:
+            raise ValueError(
+                "Player id must reference a player in the database")
