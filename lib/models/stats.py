@@ -8,7 +8,6 @@ class Stats:
         self.id = id
         self.goals = goals
         self.assists = assists
-        self.points = goals + assists
         self.player_id = player_id
 
     def __repr__(self):
@@ -62,8 +61,7 @@ class Stats:
             CREATE TABLE IF NOT EXISTS stats (
             id INTEGER PRIMARY KEY,
             goals INTEGER,
-            stats INTEGER,
-            points INTEGER,
+            assists INTEGER,
             player_id INTEGER,
             FOREIGN KEY (player_id) REFERENCES players(id))
         """
@@ -75,11 +73,11 @@ class Stats:
         Update object id attribute using the primary key value of new row.
         Save the object in local dictionary using table row's PK as dictionary key"""
         sql = """
-                INSERT INTO stats (goals, assists, points, player_id)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO stats (goals, assists, player_id)
+                VALUES (?, ?, ?)
         """
 
-        CURSOR.execute(sql, (self.goals, self.assists, self.points, self.player_id))
+        CURSOR.execute(sql, (self.goals, self.assists, self.player_id))
         CONN.commit()
 
         self.id = CURSOR.lastrowid
@@ -87,8 +85,7 @@ class Stats:
 
     @classmethod
     def create(cls, goals, assists, player_id):
-        points = goals + assists
         """ Initialize a new Stats instance and save the object to the database """
-        stats = cls(goals, assists, points, player_id)
+        stats = cls(goals, assists, player_id)
         stats.save()
         return stats  

@@ -59,14 +59,11 @@ class Player():
     def instance_from_db(cls, row):
         """Return a Player object having the attribute values from the table row."""
 
-        # Check the dictionary for an existing instance using the row's primary key
         player = cls.all.get(row[0])
         if player:
-            # ensure attributes match row values in case local instance was modified
             player.name = row[1]
             player.number = row[2]
         else:
-            # not in dictionary, create new instance and add to dictionary
             player = cls(row[1], row[2])
             player.id = row[0]
             cls.all[player.id] = player
