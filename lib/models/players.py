@@ -58,7 +58,6 @@ class Player():
     @classmethod
     def instance_from_db(cls, row):
         """Return a Player object having the attribute values from the table row."""
-
         player = cls.all.get(row[0])
         if player:
             player.name = row[1]

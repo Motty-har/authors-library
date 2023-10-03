@@ -1,11 +1,16 @@
 # lib/helpers.py
 from models.players import Player
+from models.stats import Stats
 
 def add_player():
     name = input("Please enter the players name: ")
     number = input("Please enter the players number: ")
+    goals = input("Enter the goals: ")
+    assists = input("Enter the assists: ")
     player = Player.create(name, number)
-    print(f'Success: {player}')
+    stats = Stats.create(goals, assists, player.id)
+    print(f'Success: {player}, {stats}')
+
 
 def list_players():
     players = Player.get_all()
@@ -37,7 +42,10 @@ def update_player():
         print(f'Player ({id_} not found)')
 
 def player_stats():
-    pass
+    Stats.find_player_by_id(1)
+    stats = Stats.get_all()
+    for stat in stats:
+        print(stat)
 
 def update_stats():
     pass

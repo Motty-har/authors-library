@@ -32,11 +32,10 @@ def main():
                 delete_player() 
             elif choice == "U":
                 update_player()
-            elif choice == "S":
-                player_stats()
             else:
                 print("Invalid choice")
         elif choice == "S":
+            player_stats()
             stats_submenu()
             choice = input("> ")
             if choice == "B":
